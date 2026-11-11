@@ -33,7 +33,7 @@ export const classificationShape = {
   mechanics: z.array(z.enum(['aoe', 'duration', 'projectile', 'chaining', 'nova', 'channeling', 'cooldown', 'instant', 'minion'])),
   combat_range: z.enum(['melee', 'ranged']).nullable(),
   playability: playabilitySchema,
-  playability_reasons: z.array(z.enum(['support_gem', 'no_active_skill', 'unreleased', 'graft_skill', 'not_manually_casted', 'movement_skill', 'guard_skill', 'aura', 'curse_or_mark', 'buff_only', 'no_damage', 'damage_not_detected', 'legacy_skill', 'requires_specific_mechanic'])),
+  playability_reasons: z.array(z.enum(['support_gem', 'no_active_skill', 'unreleased', 'graft_skill', 'not_manually_casted', 'movement_skill', 'guard_skill', 'aura', 'curse_or_mark', 'buff_only', 'no_damage', 'damage_not_detected', 'legacy_skill', 'requires_specific_mechanic', 'support_skill'])),
   manual_review: z.boolean(), classification_confidence: z.enum(['high', 'medium', 'low']),
   classification_rules_version: z.string().min(1),
 };

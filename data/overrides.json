@@ -1,1 +1,558 @@
-{}
+{
+  "flame_dash::Metadata/Items/Gems/SkillGemFlameDash": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "movement_skill"
+    ],
+    "manual_review": false
+  },
+  "flame_dash_alt_y::Metadata/Items/Gems/SkillGemFlameDash::alt_y": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "movement_skill"
+    ],
+    "manual_review": false
+  },
+  "whirling_blades::Metadata/Items/Gems/SkillGemWhirlingBlades": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "movement_skill"
+    ],
+    "manual_review": false
+  },
+  "frostblink::Metadata/Items/Gems/SkillGemFrostblink": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "movement_skill"
+    ],
+    "manual_review": false
+  },
+  "leap_slam::Metadata/Items/Gems/SkillGemLeapSlam": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "movement_skill"
+    ],
+    "manual_review": false
+  },
+  "lightning_warp::Metadata/Items/Gems/SkillGemLightningWarp": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "movement_skill"
+    ],
+    "manual_review": false
+  },
+  "vaal_lightning_warp::Metadata/Items/Gems/SkillGemVaalLightningWarp": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "movement_skill"
+    ],
+    "manual_review": false
+  },
+  "blink_arrow::Metadata/Items/Gems/SkillGemBlinkArrow": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "movement_skill"
+    ],
+    "manual_review": false
+  },
+  "mirror_arrow::Metadata/Items/Gems/SkillGemMirrorArrow": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "movement_skill"
+    ],
+    "manual_review": false
+  },
+  "desecrate::Metadata/Items/Gems/SkillGemDesecrate": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "no_damage"
+    ],
+    "manual_review": false
+  },
+  "tempest_shield::Metadata/Items/Gems/SkillGemTempestShield": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "no_damage"
+    ],
+    "manual_review": false
+  },
+  "frost_wall::Metadata/Items/Gems/SkillGemFrostWall": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "no_damage"
+    ],
+    "manual_review": false
+  },
+  "frost_wall_alt_x::Metadata/Items/Gems/SkillGemFrostWall::alt_x": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "no_damage"
+    ],
+    "manual_review": false
+  },
+  "energy_blade::Metadata/Items/Gems/SkillGemEnergyBlade": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "no_damage"
+    ],
+    "manual_review": false
+  },
+  "mana_infused_staff::Metadata/Items/Gems/SkillGemManaInfusedStaff": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "no_damage"
+    ],
+    "manual_review": false
+  },
+  "ensnaring_arrow::Metadata/Items/Gems/SkillGemEnsnaringArrow": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "bear_trap::Metadata/Items/Gems/SkillGemBearTrap": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "siphoning_trap::Metadata/Items/Gems/SkillGemIceSiphonTrap": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "hydrosphere::Metadata/Items/Gems/SkillGemHydrosphere": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "herald_of_ash::Metadata/Items/Gems/SkillGemHeraldOfAsh": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "herald_of_ice::Metadata/Items/Gems/SkillGemHeraldOfIce": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "plague_bearer::Metadata/Items/Gems/SkillGemPlagueBearer": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "animate_guardian::Metadata/Items/Gems/SkillGemAnimateArmour": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "bear_trap_alt_x::Metadata/Items/Gems/SkillGemBearTrap::alt_x": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "void_sphere::Metadata/Items/Gems/SkillGemVoidSphere": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "contagion::Metadata/Items/Gems/SkillGemContagion": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "contagion_alt_x::Metadata/Items/Gems/SkillGemContagion::alt_x": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "contagion_alt_y::Metadata/Items/Gems/SkillGemContagion::alt_y": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "channelled_snipe::Metadata/Items/Gems/SkillGemChannelledSnipe": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "ancestral_protector::Metadata/Items/Gems/SkillGemMeleeTotem": {
+    "playability": "excluded",
+    "playability_reasons": [
+      "legacy_skill"
+    ],
+    "manual_review": false
+  },
+  "ancestral_warchief::Metadata/Items/Gems/SkillGemAncestralWarchief": {
+    "playability": "excluded",
+    "playability_reasons": [
+      "legacy_skill"
+    ],
+    "manual_review": false
+  },
+  "vaal_ancestral_warchief::Metadata/Items/Gems/SkillGemVaalAncestralWarchief": {
+    "playability": "excluded",
+    "playability_reasons": [
+      "legacy_skill"
+    ],
+    "manual_review": false
+  },
+  "call_of_the_wild::Metadata/Items/Gems/SkillGemCallOfTheWild": {
+    "playability": "excluded",
+    "playability_reasons": [
+      "unreleased"
+    ],
+    "manual_review": false
+  },
+  "playtest_attack::Metadata/Items/Gems/SkillGemPlaytestAttack": {
+    "playability": "excluded",
+    "playability_reasons": [
+      "unreleased"
+    ],
+    "manual_review": false
+  },
+  "playtest_slam::Metadata/Items/Gems/SkillGemPlaytestSlam": {
+    "playability": "excluded",
+    "playability_reasons": [
+      "unreleased"
+    ],
+    "manual_review": false
+  },
+  "playtest_spell::Metadata/Items/Gems/SkillGemPlaytestSpell": {
+    "playability": "excluded",
+    "playability_reasons": [
+      "unreleased"
+    ],
+    "manual_review": false
+  },
+  "oil_arrow::Metadata/Items/Gems/SkillGemFlammableShot": {
+    "playability": "excluded",
+    "playability_reasons": [
+      "unreleased"
+    ],
+    "manual_review": false
+  },
+  "frozen_legion::Metadata/Items/Gems/SkillGemFrozenLegion": {
+    "playability": "main",
+    "playability_reasons": [],
+    "manual_review": false
+  },
+  "frozen_legion_alt_x::Metadata/Items/Gems/SkillGemFrozenLegion::alt_x": {
+    "playability": "main",
+    "playability_reasons": [],
+    "manual_review": false
+  },
+  "ancestral_cry::Metadata/Items/Gems/SkillGemAncestralCry": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "arctic_armour::Metadata/Items/Gems/SkillGemArcticArmour": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "arctic_armour::Metadata/Items/Gems/SkillGemNewArcticArmour": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "blood_rage::Metadata/Items/Gems/SkillGemBloodRage": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "defiance_banner::Metadata/Items/Gems/SkillGemDefianceBanner": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "dread_banner::Metadata/Items/Gems/SkillGemDreadBanner": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "enduring_cry::Metadata/Items/Gems/SkillGemEnduringCry": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "flesh_and_stone::Metadata/Items/Gems/SkillGemFleshAndStone": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "gluttony_of_elements::Metadata/Items/Gems/SkillGemGluttonyOfElements": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "intimidating_cry::Metadata/Items/Gems/SkillGemIntimidatingCry": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "pact_of_beidat::Metadata/Items/Gems/SkillGemPactOfBeidat": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "pact_of_ghorr::Metadata/Items/Gems/SkillGemPactOfGhorr": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "pact_of_ktash::Metadata/Items/Gems/SkillGemPactOfKtash": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "pact_of_lycia::Metadata/Items/Gems/SkillGemPactOfLycia": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "petrified_blood::Metadata/Items/Gems/SkillGemPetrifiedBlood": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "rallying_cry::Metadata/Items/Gems/SkillGemRallyingCry": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "seismic_cry::Metadata/Items/Gems/SkillGemSeismicCry": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "sigil_of_power::Metadata/Items/Gems/SkillGemSigilOfPower": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "vaal_arctic_armour::Metadata/Items/Gems/SkillGemVaalArcticArmour": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "vengeful_cry::Metadata/Items/Gems/SkillGemVengefulCry": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "war_banner::Metadata/Items/Gems/SkillGemWarBanner": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "buff_only"
+    ],
+    "manual_review": false
+  },
+  "molten_shell::Metadata/Items/Gems/SkillGemMoltenShell": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "guard_skill"
+    ],
+    "manual_review": false
+  },
+  "vaal_molten_shell::Metadata/Items/Gems/SkillGemVaalMoltenShell": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "guard_skill"
+    ],
+    "manual_review": false
+  },
+  "ambush_player::Metadata/Items/Gems/SkillGemAmbush": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "automation::Metadata/Items/Gems/SkillGemAutomation": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "battlemages_cry::Metadata/Items/Gems/SkillGemBattlemagesCry": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "brand_recall::Metadata/Items/Gems/SkillGemRecallBrands": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "call_mercenary::Metadata/Items/Gem/SkillGemCallMercenary": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "call_to_arms::Metadata/Items/Gems/SkillGemCallToArms": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "destructive_link::Metadata/Items/Gems/SkillGemDestructiveLink": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "flame_link::Metadata/Items/Gems/SkillGemFlameLink": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "frost_shield::Metadata/Items/Gems/SkillGemFrostShield": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "generals_cry::Metadata/Items/Gems/SkillGemGeneralsCry": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "infernal_cry::Metadata/Items/Gems/SkillGemAbyssalCry": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "intuitive_link::Metadata/Items/Gems/SkillGemIntuitiveLink": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "protective_link::Metadata/Items/Gems/SkillGemProtectiveLink": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "soul_link::Metadata/Items/Gems/SkillGemSoulLink": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "spellslinger::Metadata/Items/Gems/SkillGemSpellslinger": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "summon_skitterbots::Metadata/Items/Gems/SkillGemSummonSkitterbots": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "vampiric_link::Metadata/Items/Gems/SkillGemVampiricLink": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  },
+  "wither::Metadata/Items/Gems/SkillGemWither": {
+    "playability": "support_only",
+    "playability_reasons": [
+      "support_skill"
+    ],
+    "manual_review": false
+  }
+}
