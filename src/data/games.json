@@ -1,0 +1,308 @@
+[
+  {
+    "id": "poe1",
+    "name": "Path of Exile 1",
+    "catalog": "poe1",
+    "version": "GGG 3.29.1 classes / existing gem snapshot",
+    "classes": [
+      {
+        "name": "Scion",
+        "attributes": {
+          "strength": 20,
+          "dexterity": 20,
+          "intelligence": 20
+        },
+        "ascendancies": [
+          "Ascendant",
+          "Reliquarian",
+          "Luminary"
+        ]
+      },
+      {
+        "name": "Marauder",
+        "attributes": {
+          "strength": 32,
+          "dexterity": 14,
+          "intelligence": 14
+        },
+        "ascendancies": [
+          "Juggernaut",
+          "Berserker",
+          "Chieftain"
+        ]
+      },
+      {
+        "name": "Ranger",
+        "attributes": {
+          "strength": 14,
+          "dexterity": 32,
+          "intelligence": 14
+        },
+        "ascendancies": [
+          "Warden",
+          "Deadeye",
+          "Pathfinder"
+        ]
+      },
+      {
+        "name": "Witch",
+        "attributes": {
+          "strength": 14,
+          "dexterity": 14,
+          "intelligence": 32
+        },
+        "ascendancies": [
+          "Occultist",
+          "Elementalist",
+          "Necromancer"
+        ]
+      },
+      {
+        "name": "Duelist",
+        "attributes": {
+          "strength": 23,
+          "dexterity": 23,
+          "intelligence": 14
+        },
+        "ascendancies": [
+          "Slayer",
+          "Gladiator",
+          "Champion"
+        ]
+      },
+      {
+        "name": "Templar",
+        "attributes": {
+          "strength": 23,
+          "dexterity": 14,
+          "intelligence": 23
+        },
+        "ascendancies": [
+          "Inquisitor",
+          "Hierophant",
+          "Guardian"
+        ]
+      },
+      {
+        "name": "Shadow",
+        "attributes": {
+          "strength": 14,
+          "dexterity": 23,
+          "intelligence": 23
+        },
+        "ascendancies": [
+          "Assassin",
+          "Trickster",
+          "Saboteur"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "poe2",
+    "name": "Path of Exile 2",
+    "catalog": "poe2",
+    "version": "RePoE exported skill snapshot",
+    "classes": [
+      {
+        "name": "Witch",
+        "attributes": {
+          "strength": 7,
+          "dexterity": 7,
+          "intelligence": 15
+        },
+        "ascendancies": [
+          "Infernalist",
+          "Blood Mage",
+          "Lich"
+        ]
+      },
+      {
+        "name": "Ranger",
+        "attributes": {
+          "strength": 7,
+          "dexterity": 15,
+          "intelligence": 7
+        },
+        "ascendancies": [
+          "Deadeye",
+          "Pathfinder"
+        ]
+      },
+      {
+        "name": "Warrior",
+        "attributes": {
+          "strength": 15,
+          "dexterity": 7,
+          "intelligence": 7
+        },
+        "ascendancies": [
+          "Titan",
+          "Warbringer",
+          "Smith of Kitava"
+        ]
+      },
+      {
+        "name": "Sorceress",
+        "attributes": {
+          "strength": 7,
+          "dexterity": 7,
+          "intelligence": 15
+        },
+        "ascendancies": [
+          "Stormweaver",
+          "Chronomancer",
+          "Disciple of Varashta"
+        ]
+      },
+      {
+        "name": "Huntress",
+        "attributes": {
+          "strength": 7,
+          "dexterity": 15,
+          "intelligence": 7
+        },
+        "ascendancies": [
+          "Amazon",
+          "Spirit Walker",
+          "Ritualist"
+        ]
+      },
+      {
+        "name": "Mercenary",
+        "attributes": {
+          "strength": 11,
+          "dexterity": 11,
+          "intelligence": 7
+        },
+        "ascendancies": [
+          "Tactician",
+          "Witchhunter",
+          "Gemling Legionnaire"
+        ]
+      },
+      {
+        "name": "Monk",
+        "attributes": {
+          "strength": 7,
+          "dexterity": 11,
+          "intelligence": 11
+        },
+        "ascendancies": [
+          "Martial Artist",
+          "Invoker",
+          "Acolyte of Chayula"
+        ]
+      },
+      {
+        "name": "Druid",
+        "attributes": {
+          "strength": 11,
+          "dexterity": 7,
+          "intelligence": 11
+        },
+        "ascendancies": [
+          "Oracle",
+          "Shaman"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "phrecia",
+    "name": "Legacy of Phrecia",
+    "catalog": "poe1",
+    "version": "GGG 3.27.0g alternate ruleset / shared PoE 1 gems",
+    "classes": [
+      {
+        "name": "Scion",
+        "attributes": {
+          "strength": 20,
+          "dexterity": 20,
+          "intelligence": 20
+        },
+        "ascendancies": [
+          "Scavenger"
+        ]
+      },
+      {
+        "name": "Marauder",
+        "attributes": {
+          "strength": 32,
+          "dexterity": 14,
+          "intelligence": 14
+        },
+        "ascendancies": [
+          "Ancestral Commander",
+          "Behemoth",
+          "Antiquarian"
+        ]
+      },
+      {
+        "name": "Ranger",
+        "attributes": {
+          "strength": 14,
+          "dexterity": 32,
+          "intelligence": 14
+        },
+        "ascendancies": [
+          "Wildspeaker",
+          "Whisperer",
+          "Daughter of Oshabi"
+        ]
+      },
+      {
+        "name": "Witch",
+        "attributes": {
+          "strength": 14,
+          "dexterity": 14,
+          "intelligence": 32
+        },
+        "ascendancies": [
+          "Harbinger",
+          "Herald",
+          "Bog Shaman"
+        ]
+      },
+      {
+        "name": "Duelist",
+        "attributes": {
+          "strength": 23,
+          "dexterity": 23,
+          "intelligence": 14
+        },
+        "ascendancies": [
+          "Aristocrat",
+          "Gambler",
+          "Paladin"
+        ]
+      },
+      {
+        "name": "Templar",
+        "attributes": {
+          "strength": 23,
+          "dexterity": 14,
+          "intelligence": 23
+        },
+        "ascendancies": [
+          "Architect of Chaos",
+          "Puppeteer",
+          "Polytheist"
+        ]
+      },
+      {
+        "name": "Shadow",
+        "attributes": {
+          "strength": 14,
+          "dexterity": 23,
+          "intelligence": 23
+        },
+        "ascendancies": [
+          "Servant of Arakaali",
+          "Blind Prophet",
+          "Surfcaster"
+        ]
+      }
+    ]
+  }
+]

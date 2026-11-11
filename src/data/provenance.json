@@ -1,0 +1,14 @@
+{
+  "generated": "2026-11-11T08:06:24.754Z",
+  "sources": [
+    "https://repoe-fork.github.io/",
+    "https://repoe-fork.github.io/poe2/",
+    "https://github.com/grindinggear/skilltree-export/tree/3.29.1",
+    "https://github.com/grindinggear/skilltree-export/tree/3.27.0g/alternate.json"
+  ],
+  "limitations": [
+    "PoE 1 gems retain the existing snapshot, with no verified patch identifier.",
+    "PoE 2 affinity uses actual requirement weights from RePoE, not numerical equipment requirements.",
+    "Phrecia uses the shared PoE 1 gem snapshot with official alternate Ascendancies."
+  ]
+}
