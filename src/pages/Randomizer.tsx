@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import {
-  Layers3,
   SlidersHorizontal,
   RotateCcw,
   ArrowRight,
@@ -39,12 +38,14 @@ export function Randomizer() {
   const [filters, setFilters] = useState<Filters>(emptyFilters),
     [target, setTarget] = useState<Target>("Skill"),
     [mode, setMode] = useState<RandomMode>(randomModes[0]),
-    [submode, setSubmode] = useState("Random 3"),
+    [submode, setSubmode] = useState("Any Archetype"),
+    [revealCount, setRevealCount] = useState(3),
     [recent, setRecent] = useState<string[]>([]),
     [draft, setDraft] = useState<Partial<Result>>({}),
     [step, setStep] = useState(0),
     [round, setRound] = useState(0);
   const result = local.results?.[mode] ?? null;
+  const pickMode = mode === "Pick 1 of 3";
   function setResult(result: Result | null) {
     updateLocal((s) => ({
       ...s,
@@ -121,7 +122,8 @@ export function Randomizer() {
       local.settings.cardCount,
       local.settings,
       character,
-      mode === "Pick 1 of 3" ? submode : "Random 3",
+      pickMode ? submode : undefined,
+      revealCount,
     ).map((g) => ({
       id: g.id,
       name: g.name,
@@ -188,16 +190,7 @@ export function Randomizer() {
   return (
     <>
       <div className="page-heading">
-        <div>
-          <div className="eyebrow">
-            <Layers3 size={14} />
-            Leave something to chance
-          </div>
-          <h1>
-            Your next build<span className="heading-dot">.</span>
-          </h1>
-          <p>Less theorycrafting. More unexpected adventures.</p>
-        </div>
+        <h1>Your next build</h1>
         <span className="pool-indicator">
           <span className="live-dot" />
           <strong>{eligible.length}</strong> skills in your pool
@@ -215,7 +208,7 @@ export function Randomizer() {
               resetDraw();
             }}
           >
-            {m}
+            {m === "Pick 1 of 3" ? `Pick 1 of ${revealCount}` : m}
           </button>
         ))}
       </div>
@@ -251,23 +244,41 @@ export function Randomizer() {
               </select>
             </label>
           )}
-          {mode === "Pick 1 of 3" && (
-            <label>
-              Skill selection
-              <select
-                value={submode}
-                onChange={(e) => {
-                  setSubmode(e.target.value);
-                  reset();
-                }}
-              >
-                {["Random 3", "Same Archetype", "Different Archetypes"].map(
-                  (m) => (
+          {pickMode && (
+            <>
+              <label>
+                Cards to reveal
+                <select
+                  value={revealCount}
+                  onChange={(e) => {
+                    setRevealCount(Number(e.target.value));
+                    resetDraw();
+                  }}
+                >
+                  {Array.from({ length: local.settings.cardCount }, (_, i) => (
+                    <option key={i + 1}>{i + 1}</option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Skill selection
+                <select
+                  value={submode}
+                  onChange={(e) => {
+                    setSubmode(e.target.value);
+                    reset();
+                  }}
+                >
+                  {[
+                    "Any Archetype",
+                    "Same Archetype",
+                    "Different Archetypes",
+                  ].map((m) => (
                     <option key={m}>{m}</option>
-                  ),
-                )}
-              </select>
-            </label>
+                  ))}
+                </select>
+              </label>
+            </>
           )}
           {archetypeOptions.length > 0 && (
             <div className="filter-block">
@@ -419,7 +430,7 @@ export function Randomizer() {
                   JSON.stringify(local.overrides)
                 }
                 settings={local.settings}
-                pickThree={mode === "Pick 1 of 3"}
+                revealCount={pickMode ? revealCount : undefined}
                 prepare={prepare}
                 kind={kind}
                 onChoose={complete}
@@ -476,7 +487,9 @@ export function Randomizer() {
                 <span className="badge">{game.name}</span>
               </div>
               <div className="result-identity">
-                {result.skill && <GemDiamond skill={result.skill} size="large" />}
+                {result.skill && (
+                  <GemDiamond skill={result.skill} size="large" />
+                )}
                 <div>
                   <h2>
                     {result.skill ? (

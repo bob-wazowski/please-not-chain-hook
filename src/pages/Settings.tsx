@@ -93,8 +93,8 @@ export function Settings() {
             </small>
           </Toggle>
           <div className="settings-tip">
-            Each Class, Ascendancy and Skill draw uses a fresh deck. In Pick 1
-            of 3, choose three closed cards, reveal them, then keep one.
+            Each Class, Ascendancy and Skill draw uses a fresh deck. In Pick 1,
+            set how many cards to reveal, then keep one of the open cards.
           </div>
         </section>
         <section className="settings-section panel">

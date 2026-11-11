@@ -95,7 +95,8 @@ export function skillDeck(
   count: number,
   settings: Settings,
   character?: Character,
-  submode = "Random 3",
+  submode = "Any Archetype",
+  minimum = 3,
 ): Skill[] {
   let candidates = list;
   if (submode === "Same Archetype") {
@@ -104,9 +105,9 @@ export function skillDeck(
       for (const a of g.archetypes) {
         groups.set(a, [...(groups.get(a) || []), g]);
       }
-    const valid = [...groups.values()].filter((g) => g.length >= 3);
+    const valid = [...groups.values()].filter((g) => g.length >= minimum);
     if (!valid.length)
-      throw Error("No archetype contains three unique skills.");
+      throw Error(`No archetype contains ${minimum} unique skills.`);
     candidates = valid[randomInt(valid.length)];
   }
   if (submode === "Different Archetypes") {
@@ -127,9 +128,9 @@ export function skillDeck(
     const unique = [
       ...new Map([...assigned.values()].map((g) => [g.id, g])).values(),
     ];
-    if (unique.length < 3)
+    if (unique.length < minimum)
       throw Error(
-        "At least three distinct archetypes with unique skills are required.",
+        `At least ${minimum} distinct archetypes with unique skills are required.`,
       );
     candidates = unique;
   }

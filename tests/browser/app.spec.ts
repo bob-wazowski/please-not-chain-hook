@@ -14,20 +14,27 @@ test.beforeEach(async ({ page }) => {
   );
   await page.goto("/");
 });
-test("Pick 1 of 3 hides contents until three cards are chosen; share PNG and link work", async ({
+test("Pick 1 reveals each chosen card and keeps a configurable shortlist", async ({
   page,
 }) => {
   await page.getByRole("button", { name: "Pick 1 of 3", exact: true }).click();
+  await page.getByLabel("Cards to reveal").selectOption("4");
+  await expect(
+    page.getByRole("button", { name: "Pick 1 of 4", exact: true }),
+  ).toHaveAttribute("aria-pressed", "true");
   await page.getByRole("button", { name: "Shuffle & deal" }).click();
   await expect(page.locator(".draw-card")).toHaveCount(12);
   await expect(page.locator(".face-up")).toHaveCount(0);
-  for (let i = 1; i <= 3; i++)
+  for (let i = 1; i <= 4; i++) {
     await page
       .getByRole("button", { name: `Face-down card ${i}`, exact: true })
       .click();
-  await expect(page.locator(".face-up")).toHaveCount(0);
-  await page.getByRole("button", { name: "Reveal 3 cards" }).click();
-  await expect(page.locator(".face-up")).toHaveCount(3);
+    await expect(page.locator(".face-up")).toHaveCount(i);
+    await expect(page.locator(".draw-card")).toHaveCount(i < 4 ? 12 : 4);
+  }
+  await expect(
+    page.getByRole("button", { name: /^Face-down card/ }),
+  ).toHaveCount(0);
   const revealed = page.locator(".face-up").first();
   await expect(revealed.getByRole("link")).toHaveAttribute(
     "href",
@@ -37,7 +44,20 @@ test("Pick 1 of 3 hides contents until three cards are chosen; share PNG and lin
     /gem-(str|dex|int|all)/,
   );
   await expect(revealed.locator("img")).toHaveCount(0);
-  await revealed.getByRole("button", { name: /^Keep / }).click();
+  await page
+    .context()
+    .route("https://www.poewiki.net/wiki/**", (route) =>
+      route.fulfill({ body: "" }),
+    );
+  const popup = page.waitForEvent("popup");
+  await revealed.getByRole("link").click();
+  await (await popup).close();
+  await expect(page.locator(".result-panel")).toHaveCount(0);
+  const select = revealed.getByRole("button", { name: /^Select / });
+  await select.hover({ position: { x: 10, y: 10 } });
+  await expect(revealed).toHaveCSS("transform", "matrix(1, 0, 0, 1, 0, -5)");
+  await select.click({ position: { x: 10, y: 10 } });
+  await expect(page.locator(".face-up")).toHaveCount(4);
   await expect(
     page.locator(".result-identity").getByRole("link"),
   ).toBeVisible();
@@ -297,11 +317,10 @@ test("Randomizer tabs keep their own results and challenges", async ({
       .getByRole("button", { name: `Face-down card ${i}`, exact: true })
       .click();
   }
-  await page.getByRole("button", { name: "Reveal 3 cards" }).click();
   await page
-    .getByRole("button", { name: /^Keep / })
+    .getByRole("button", { name: /^Select / })
     .first()
-    .click();
+    .click({ position: { x: 10, y: 10 } });
   const secondResult = await identity.innerText();
 
   await absolute.click();
@@ -359,21 +378,42 @@ test("All pages fit mobile and desktop; no runtime errors", async ({
     fullPage: true,
   });
 });
-test("Game picker shows disabled PoE 2 and Phrecia options", async ({
+test("Game picker in the sidebar switches between PoE 1 and PoE 2", async ({
   page,
 }) => {
-  const picker = page.getByRole("combobox", { name: "Game / Ruleset" });
-  await expect(picker.getByRole("option")).toHaveCount(3);
-  await expect(
-    picker.getByRole("option", { name: /^Path of Exile 1/ }),
-  ).toBeEnabled();
-  await expect(
-    picker.getByRole("option", { name: /^Path of Exile 2/ }),
-  ).toBeDisabled();
-  await expect(
-    picker.getByRole("option", { name: /^Legacy of Phrecia/ }),
-  ).toBeDisabled();
+  const picker = page
+    .locator(".sidebar-bottom")
+    .getByRole("combobox", { name: "Game / Ruleset" });
+  await expect(picker.getByRole("option")).toHaveText(["PoE 1", "PoE 2"]);
   await expect(picker).toHaveValue("poe1");
+  await picker.selectOption("poe2");
+  await page.reload();
+  await expect(picker).toHaveValue("poe2");
+  await expect(page.locator(".pool-indicator strong")).not.toHaveText("0");
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole("button", { name: "Toggle navigation" }).click();
+  await expect(picker).toBeVisible();
+  await picker.selectOption("poe1");
+  await expect(picker).toBeHidden();
+});
+test("Randomizer fits on a 1280 by 720 screen with More filters collapsed", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await expect(
+    page.getByRole("heading", { name: "Your next build", exact: true }),
+  ).toBeVisible();
+  await expect(page.locator(".topbar")).toHaveCount(0);
+  await expect(page.locator(".extra-filters")).not.toHaveAttribute("open");
+  const height = await page.evaluate(
+    () => document.documentElement.scrollHeight,
+  );
+  expect(height).toBeLessThanOrEqual(720);
+  await page.getByRole("button", { name: "Shuffle & deal" }).click();
+  await expect(page.locator(".draw-card")).toHaveCount(12);
+  expect(
+    await page.evaluate(() => document.documentElement.scrollHeight),
+  ).toBeLessThanOrEqual(720);
 });
 test("Settings are ordered and gem inclusion is controlled in Randomizer", async ({
   page,

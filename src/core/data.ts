@@ -115,7 +115,10 @@ export const games: Game[] = (
   (generated["../data/games.json"] ?? fallback) as Game[]
 ).map((g) => ({
   ...g,
-  available: g.id === "poe1" && g.classes.length > 0,
+  available:
+    g.id !== "phrecia" &&
+    g.classes.length > 0 &&
+    (g.id !== "poe2" || poe2.length > 0),
 }));
 export function catalog(game: GameId): Skill[] {
   return game === "poe2" ? poe2 : skills;

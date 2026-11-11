@@ -89,7 +89,16 @@ export default function App() {
       }}
     >
       <div className={`app-shell ${menu ? "menu-open" : ""}`}>
-        <aside className="sidebar">
+        <button
+          className="icon-button mobile-menu"
+          aria-label="Toggle navigation"
+          aria-expanded={menu}
+          aria-controls="sidebar"
+          onClick={() => setMenu(!menu)}
+        >
+          {menu ? <X size={20} /> : <Menu size={20} />}
+        </button>
+        <aside className="sidebar" id="sidebar">
           <a href="#randomizer" className="brand">
             <span className="brand-mark">
               <Zap fill="currentColor" size={26} />
@@ -116,6 +125,27 @@ export default function App() {
             ))}
           </nav>
           <div className="sidebar-bottom">
+            <label className="game-picker">
+              <select
+                aria-label="Game / Ruleset"
+                value={state.game}
+                onChange={(e) => {
+                  const selected = games.find((g) => g.id === e.target.value);
+                  if (!selected?.available) return;
+                  setState((s) => ({ ...s, game: selected.id }));
+                  setMessage("");
+                  setMenu(false);
+                }}
+              >
+                {games
+                  .filter((g) => g.id !== "phrecia")
+                  .map((g) => (
+                    <option key={g.id} value={g.id} disabled={!g.available}>
+                      {g.id === "poe1" ? "PoE 1" : "PoE 2"}
+                    </option>
+                  ))}
+              </select>
+            </label>
             <a href="https://www.poewiki.net/" target="_blank" rel="noreferrer">
               PoE Wiki <ExternalLink size={13} />
             </a>
@@ -127,42 +157,6 @@ export default function App() {
           </div>
         </aside>
         <div className="app-content">
-          <header className="topbar">
-            <div className="row">
-              <button
-                className="icon-button mobile-menu"
-                aria-label="Toggle navigation"
-                aria-expanded={menu}
-                onClick={() => setMenu(!menu)}
-              >
-                <Menu size={20} />
-              </button>
-              <span className="breadcrumb">
-                Workspace <ChevronRight size={13} />
-                <strong>{pages.find((p) => p[0] === page)?.[1]}</strong>
-              </span>
-            </div>
-            <label className="game-picker">
-              <span className="live-dot" />
-              <select
-                aria-label="Game / Ruleset"
-                value={state.game}
-                onChange={(e) => {
-                  const selected = games.find((g) => g.id === e.target.value);
-                  if (!selected?.available) return;
-                  setState((s) => ({ ...s, game: selected.id }));
-                  setMessage("");
-                }}
-              >
-                {games.map((g) => (
-                  <option key={g.id} value={g.id} disabled={!g.available}>
-                    {g.name}
-                    {!g.available ? " · Coming Soon" : ""}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </header>
           {saveError && (
             <div className="notice" role="alert">
               Your browser could not save changes. Export settings before
@@ -181,7 +175,10 @@ export default function App() {
               </button>
             </div>
           )}
-          <main key={state.game}>
+          <main
+            key={state.game}
+            className={page === "randomizer" ? "random-page" : undefined}
+          >
             {!game.available ? (
               <div className="coming-soon">
                 <Layers3 size={40} />
@@ -202,12 +199,6 @@ export default function App() {
               <Randomizer />
             )}
           </main>
-          <footer className="site-footer">
-            <span>
-              PNCH <span className="muted">/ Built for the unexpected</span>
-            </span>
-            <span>Frontend only · Saved on this device</span>
-          </footer>
         </div>
       </div>
       {shared && (

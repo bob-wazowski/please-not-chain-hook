@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Layers3, Shuffle, FastForward, Check, Zap } from "lucide-react";
+import { Layers3, Shuffle, FastForward, Zap } from "lucide-react";
 import type { Settings, Skill } from "../core/types";
 import { GemDiamond, GemLink } from "./shared";
 import { deckMotion } from "./deckMotion";
@@ -12,26 +12,27 @@ export interface CardOption {
 }
 export function Deck({
   settings,
-  pickThree,
+  revealCount,
   prepare,
   onChoose,
   kind,
 }: {
   settings: Settings;
-  pickThree: boolean;
+  revealCount?: number;
   prepare: () => CardOption[];
   onChoose: (card: CardOption) => void;
   kind: string;
 }) {
   const [cards, setCards] = useState<CardOption[]>([]),
     [phase, setPhase] = useState<
-      "idle" | "shuffle" | "choose" | "reveal" | "done"
+      "idle" | "shuffle" | "choose" | "keep" | "done"
     >("idle"),
-    [marked, setMarked] = useState<number[]>([]),
+    [revealed, setRevealed] = useState<number[]>([]),
     [chosen, setChosen] = useState(-1),
     [error, setError] = useState(""),
     [dealing, setDealing] = useState(false);
   const board = useRef<HTMLDivElement>(null),
+    restoreFocus = useRef(false),
     animations = useRef<Animation[]>([]),
     token = useRef(0),
     sound = useRef<AudioContext | null>(null);
@@ -73,12 +74,16 @@ export function Deck({
       const next = prepare();
       if (!next.length)
         throw Error("No results are available. Adjust your filters.");
-      if (pickThree && next.length < 3)
+      if (
+        revealCount !== undefined &&
+        kind === "Skill" &&
+        next.length < revealCount
+      )
         throw Error(
-          "Pick 1 of 3 needs three unique results. Broaden the pool or use Absolute Random.",
+          `This draw has ${next.length} cards. Lower Cards to reveal or broaden your filters.`,
         );
       setCards(next);
-      setMarked([]);
+      setRevealed([]);
       setChosen(-1);
       setError("");
       setPhase(reduce || settings.duration === 0 ? "choose" : "shuffle");
@@ -122,20 +127,38 @@ export function Deck({
       animations.current = [];
     };
   }, [phase, settings.duration, cards.length]);
-  function pick(i: number) {
-    if (phase === "reveal" || !pickThree) {
-      setChosen(i);
-      setMarked([i]);
-      setPhase("done");
-      tone();
-      onChoose(cards[i]);
+  useLayoutEffect(() => {
+    if (!restoreFocus.current) return;
+    restoreFocus.current = false;
+    const selector =
+      phase === "keep" ? ".card-select" : "button.draw-card:not(:disabled)";
+    board.current?.querySelector<HTMLButtonElement>(selector)?.focus();
+  }, [phase, revealed]);
+  const revealTarget =
+    revealCount === undefined ? 1 : Math.min(revealCount, cards.length);
+  function keep(i: number) {
+    setChosen(i);
+    setPhase("done");
+    tone();
+    onChoose(cards[i]);
+  }
+  function pick(i: number, keyboard: boolean) {
+    if (revealCount === undefined) {
+      keep(i);
       return;
     }
-    setMarked((v) =>
-      v.includes(i) ? v.filter((x) => x !== i) : v.length < 3 ? [...v, i] : v,
-    );
+    restoreFocus.current = keyboard;
+    const next = [...revealed, i];
+    setRevealed(next);
+    if (next.length === revealTarget) setPhase("keep");
+    tone();
   }
   const empty = phase === "idle";
+  const showShortlist =
+    revealCount !== undefined && (phase === "keep" || phase === "done");
+  const visibleCards = cards
+    .map((card, index) => ({ card, index }))
+    .filter(({ index }) => !showShortlist || revealed.includes(index));
   return (
     <section
       className={`deck-stage ${settings.particles ? "with-particles" : ""} ${reduce ? "motion-off" : ""}`}
@@ -146,7 +169,7 @@ export function Deck({
           {kind} deck
         </span>
         <span>
-          {empty ? `Up to ${settings.cardCount}` : cards.length} cards
+          {empty ? `Up to ${settings.cardCount}` : visibleCards.length} cards
         </span>
       </div>
       {empty ? (
@@ -168,35 +191,36 @@ export function Deck({
       ) : (
         <div
           ref={board}
-          className={`draw-grid ${cards.length <= 3 ? "short-deck" : ""} ${phase === "shuffle" ? "in-motion" : ""}`}
+          className={`draw-grid ${visibleCards.length <= 3 ? "short-deck" : ""} ${phase === "shuffle" ? "in-motion" : ""}`}
           aria-label={`${kind} cards`}
         >
-          {cards.map((c, i) => {
-            const face =
-              (phase === "reveal" && marked.includes(i)) ||
-              (phase === "done" && chosen === i);
-            const className = `draw-card ${marked.includes(i) ? "marked" : ""} ${face ? "face-up" : ""} ${phase === "done" && chosen !== i ? "unpicked" : ""}`;
+          {visibleCards.map(({ card: c, index: i }) => {
+            const face = revealed.includes(i) || chosen === i;
+            const className = `draw-card ${chosen === i ? "marked" : ""} ${face ? "face-up" : ""} ${phase === "done" && !face ? "unpicked" : ""}`;
             const rank = String(i + 1).padStart(2, "0");
-            if (face && c.skill) {
+            if (face) {
               return (
                 <div key={c.id} className={className}>
+                  {phase === "keep" && (
+                    <button
+                      type="button"
+                      className="card-select"
+                      aria-label={`Select ${c.name}`}
+                      onClick={() => keep(i)}
+                    />
+                  )}
                   <span className="card-corner" aria-hidden="true">
                     {rank}
                   </span>
-                  <GemDiamond skill={c.skill} />
+                  {c.skill ? (
+                    <GemDiamond skill={c.skill} />
+                  ) : (
+                    <Layers3 size={25} />
+                  )}
                   <strong>
-                    <GemLink skill={c.skill} />
+                    {c.skill ? <GemLink skill={c.skill} /> : c.name}
                   </strong>
                   <small>{c.subtitle}</small>
-                  {phase === "reveal" && (
-                    <button
-                      className="keep-card"
-                      aria-label={`Keep ${c.name}`}
-                      onClick={() => pick(i)}
-                    >
-                      Keep
-                    </button>
-                  )}
                 </div>
               );
             }
@@ -204,35 +228,17 @@ export function Deck({
               <button
                 key={c.id}
                 className={className}
-                disabled={
-                  phase === "shuffle" ||
-                  phase === "done" ||
-                  (phase === "reveal" && !marked.includes(i))
-                }
-                aria-label={face ? c.name : `Face-down card ${i + 1}`}
-                aria-pressed={marked.includes(i)}
-                onClick={() => pick(i)}
+                disabled={phase !== "choose"}
+                aria-label={`Face-down card ${i + 1}`}
+                onClick={(event) => pick(i, event.detail === 0)}
               >
                 <span className="card-corner" aria-hidden="true">
                   {rank}
                 </span>
-                {face ? (
-                  <>
-                    <Layers3 size={25} />
-                    <strong>{c.name}</strong>
-                    <small>{c.subtitle}</small>
-                  </>
-                ) : (
-                  <>
-                    <span className="card-seal">
-                      <Zap size={23} />
-                    </span>
-                    <span className="card-wordmark">PNCH</span>
-                    {marked.includes(i) && (
-                      <Check className="mark-check" size={16} />
-                    )}
-                  </>
-                )}
+                <span className="card-seal">
+                  <Zap size={23} />
+                </span>
+                <span className="card-wordmark">PNCH</span>
               </button>
             );
           })}
@@ -246,11 +252,11 @@ export function Deck({
               ? "Dealing your cards…"
               : "Shuffling the deck…"
             : phase === "choose"
-              ? pickThree
-                ? `${marked.length} of 3 cards selected. Their contents stay hidden until you reveal.`
+              ? revealCount !== undefined
+                ? `${revealed.length} of ${revealTarget} cards revealed. Choose a face-down card.`
                 : "Choose any card to reveal your result."
-              : phase === "reveal"
-                ? "Choose one of the three revealed cards."
+              : phase === "keep"
+                ? "Click a revealed card to choose it."
                 : "Result locked in."}
       </div>
       {error && (
@@ -271,22 +277,14 @@ export function Deck({
             Skip animation
           </button>
         )}
-        {phase === "choose" && pickThree && (
-          <button
-            className="primary"
-            disabled={marked.length !== 3}
-            onClick={() => {
-              tone();
-              setPhase("reveal");
-            }}
-          >
-            Reveal 3 cards
-          </button>
-        )}
       </div>
       <div className="deck-bottomline">
         <span>Unique cards. No duplicates.</span>
-        <span>Pick {pickThree ? "3, then keep 1" : "1"}</span>
+        <span>
+          {revealCount === undefined
+            ? "Pick 1"
+            : `Reveal ${empty ? revealCount : revealTarget}, then keep 1`}
+        </span>
       </div>
     </section>
   );

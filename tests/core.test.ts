@@ -124,6 +124,10 @@ test("Same archetype produces a shared group or an explicit failure", () => {
   assert.throws(() =>
     skillDeck(list.slice(1), 12, defaults, undefined, "Same Archetype"),
   );
+  assert.throws(
+    () => skillDeck(list, 12, defaults, undefined, "Same Archetype", 4),
+    /4 unique skills/,
+  );
 });
 test("Different archetypes solves overlapping membership without duplicate skills", () => {
   const list = [
@@ -134,6 +138,10 @@ test("Different archetypes solves overlapping membership without duplicate skill
   const deck = skillDeck(list, 12, defaults, undefined, "Different Archetypes");
   assert.equal(deck.length, 3);
   assert.equal(new Set(deck.map((g) => g.id)).size, 3);
+  assert.throws(
+    () => skillDeck(list, 12, defaults, undefined, "Different Archetypes", 4),
+    /4 distinct archetypes/,
+  );
   assert.throws(() =>
     skillDeck(
       [gem("a"), gem("b"), gem("c")],
